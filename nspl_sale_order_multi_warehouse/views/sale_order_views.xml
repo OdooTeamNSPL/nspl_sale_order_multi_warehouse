@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_order_form_multi_warehouse" model="ir.ui.view">
+        <field name="name">sale.order.form.multi.warehouse</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Enable editing in tree view -->
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="editable">bottom</attribute>
+            </xpath>
+
+            <!-- Add many2many_tags widget for warehouse_ids -->
+            <xpath expr="//tree/field[@name='name']" position="after">
+                <field name="warehouse_ids" string="Warehouses" widget="many2many_tags"/>
+            </xpath>
+
+            <!-- Replace smart button safely -->
+            <xpath expr="//button[@name='action_view_delivery']" position="replace">
+                <button name="action_view_delivery"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-truck">
+                    <field name="delivery_count" widget="statinfo" string="Deliveries"/>
+                </button>
+            </xpath>
+
+            <!-- Make sure field is loaded -->
+            <xpath expr="//form" position="inside">
+                <field name="delivery_count" invisible="1"/>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>
