@@ -1,6 +1,6 @@
 {
     'name': 'Sale Order Multi Warehouse',
-    'version': '18.0',
+    'version': '19.0.1',
     'summary': 'Allow selecting warehouse per Sale Order Line and create deliveries grouped by warehouse.',
     'description': """
     This module allows users to manage multiple warehouses at the Sale Order Line level:
